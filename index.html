@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sahils CPS test</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=DynaPuff&family=Nabla:EDPT,EHLT@130,2&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <h1 class="main-title">How fast do you clcikity-clackity?</h1>
+    <h2 class="sub-title">Click the button below as fast as you can!</h2>
+    
+    <div class="info id-info">
+        <h2 class="info-title">Info</h2>
+        <p class="timer-row">time: <span id="timer" class="timer">10.0</span></p>
+        <p class="clicks-row">clicks: <span id="clicks" class="clicks">0</span>
+    </div>
+
+    <div class="stats id-stats">
+        <h2 class="stats-title">Stats</h2>
+        <p class="avg-cps-row">average clicks per second: <span id="avg-cps" class="avg-cps">0</span></p>
+        <p class="lifetime-clicks-row">lifetime clicks: <span id="lifetime-clicks" class="lifetime-clicks">0</span></p>
+        <p class="lifetime-avg-cps-row">lifetime average clicks per second: <span id="lifetime-avg-cps" class="lifetime-avg-cps">0</span></p>
+    </div>
+
+
+    <div class="diff-time" id="diff-time">
+        <button id="5-sec" class="diff-time-button">5 seconds</button>
+        <button id="10-sec" class="diff-time-button">10 seconds</button>
+        <button id="15-sec" class="diff-time-button">15 seconds</button>
+    </div>
+
+
+    <button id="click-button" class="click-button">Click me to start the timer!!</button>
+    <button id="reset-button" class="reset-button">start again!</button>
+
+    <script src="script.js"></script>
+
+  </body>
+</html>
