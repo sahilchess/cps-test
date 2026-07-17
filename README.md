@@ -4,7 +4,7 @@ A personalized, upgraded remake of Flappy Bird featuring a super cool hero asset
 
 ### [play here](https://cps-test-rust.vercel.app/)
 
-<img width="1919" height="918" alt="image" src="https://github.com/user-attachments/assets/4d66f483-d2dd-45f9-a7ac-b645d6ba4d57" />
+<img width="2500" height="auto" alt="image" src="https://github.com/user-attachments/assets/4d66f483-d2dd-45f9-a7ac-b645d6ba4d57" />
 
 
 ---
