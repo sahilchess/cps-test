@@ -1,10 +1,11 @@
-# flappy_remake
+# cps-test
 
 A personalized, upgraded remake of Flappy Bird featuring a super cool hero asset and sleek modern optimization. Built specifically for [onekey](https://onekey.hackclub.com).
 
-### [Click Here to Play the Game Live](https://cps-test-rust.vercel.app/)
+### [play here](https://cps-test-rust.vercel.app/)
 
-img here
+<img width="1919" height="918" alt="image" src="https://github.com/user-attachments/assets/4d66f483-d2dd-45f9-a7ac-b645d6ba4d57" />
+
 
 ---
 
