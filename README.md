@@ -1,1 +1,28 @@
-# cps-test
+# flappy_remake
+
+A personalized, upgraded remake of Flappy Bird featuring a super cool hero asset and sleek modern optimization. Built specifically for [onekey](https://onekey.hackclub.com).
+
+### [Click Here to Play the Game Live](https://cps-test-rust.vercel.app/)
+
+img here
+
+---
+
+## wut this?
+This is a cps tracker made for [onekey](onekey.hackclub.com). it tracks how fast you click.
+
+## Features
+* real time click tracker
+* lifetime stat tracking
+* nice and clean ui
+* cool fonts
+
+## How to Run It
+No installation, complex terminal commands, or cloning required:
+1. Click the [Live Demo Link](https://cps-test-rust.vercel.app/) at the top of this file.
+2. click the big purple button to start tracking clicks
+3. track your stats
+
+## Future plans
+Planned updates and customizable features currently in development:
+* In-Game Settings Menu: An interactive interface to toggle and tune your gameplay style.
