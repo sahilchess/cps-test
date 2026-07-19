@@ -64,6 +64,7 @@ function end_game() {
   is_playing = false;
   is_game_over = true;
   click_button.disabled = true;
+  click_button.display = "none";
   click_button.textContent = "time's up, check your stats";
   reset_button.style.display = "block";
   five_sec.style.display = "block";
