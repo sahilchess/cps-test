@@ -18,12 +18,11 @@ This is a cps tracker made for [onekey](onekey.hackclub.com). it tracks how fast
 * nice and clean ui
 * cool fonts
 
-## How to Run It
-No installation, complex terminal commands, or cloning required:
+## How to test It
 1. Click the [Live Demo Link](https://cps-test-rust.vercel.app/) at the top of this file.
 2. click the big purple button to start tracking clicks
 3. track your stats
 
 ## Future plans
 Planned updates and customizable features currently in development:
-* In-Game Settings Menu: An interactive interface to toggle and tune your gameplay style.
+* settings Menu: An interactive interface to toggle and tune your style.
