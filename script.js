@@ -1,112 +1,101 @@
-const click_button = document.getElementById('click-button');
-const reset_button = document.getElementById('reset-button');
-const timer_span = document.getElementById('timer');
-const clicks_span = document.getElementById('clicks');
-const avg_cps_span = document.getElementById('avg-cps');
-const lifetime_clicks_span = document.getElementById('lifetime-clicks');
-const lifetime_avg_cps_span = document.getElementById('lifetime-avg-cps');
-const five_sec = document.getElementById('5-sec');
-const ten_sec = document.getElementById('10-sec');
-const fifteen_sec = document.getElementById('15-sec');
+const clickBtn = document.getElementById('click-button');
+const resetBtn = document.getElementById('reset-button');
+const timerEl = document.getElementById('timer');
+const clicksEl = document.getElementById('clicks');
+const avgEl = document.getElementById('avg-cps');
+const lifeClicksEl = document.getElementById('lifetime-clicks');
+const lifeAvgEl = document.getElementById('lifetime-avg-cps');
+const btn5 = document.getElementById('5-sec');
+const btn10 = document.getElementById('10-sec');
+const btn15 = document.getElementById('15-sec');
 
-let game_duration = 10.0;
-let time_left = game_duration;
-let clicks_count = 0;
-let timer_interval = null;
-let is_playing = false;
-let is_game_over = false;
+let duration = 10.0;
+let timeLeft = duration;
+let clicks = 0;
+let interval = null;
+let playing = false;
+let gameOver = false;
 
-const timer_step = 0.1;
+// grab whatever was saved before, if nothing default to 0
+let lifeClicks = parseInt(localStorage.getItem('cps_lifetime_clicks')) || 0;
+let lifeGames = parseInt(localStorage.getItem('cps_lifetime_games')) || 0;
 
-let lifetime_clicks = parseInt(localStorage.getItem('cps_lifetime_clicks')) || 0;
-let lifetime_games = parseInt(localStorage.getItem('cps_lifetime_games')) || 0;
+updateLifetimeDisplay();
 
-update_lifetime_stats_display();
-
-click_button.addEventListener('click', () => {
-  if (is_game_over) return;
-  if (!is_playing) start_timer();
-
-  clicks_count++;
-  clicks_span.textContent = clicks_count;
+clickBtn.addEventListener('click', () => {
+  if (gameOver) return;
+  if (!playing) startTimer();
+  clicks++;
+  clicksEl.textContent = clicks;
 });
 
-five_sec.addEventListener('click', () => set_duration(5.0));
-ten_sec.addEventListener('click', () => set_duration(10.0));
-fifteen_sec.addEventListener('click', () => set_duration(15.0));
+btn5.addEventListener('click', () => setDuration(5.0));
+btn10.addEventListener('click', () => setDuration(10.0));
+btn15.addEventListener('click', () => setDuration(15.0));
+resetBtn.addEventListener('click', resetGame);
 
-function set_duration(seconds) {
-  game_duration = seconds;
-  time_left = game_duration;
-  timer_span.textContent = game_duration.toFixed(1);
+function setDuration(sec) {
+  duration = sec;
+  timeLeft = sec;
+  timerEl.textContent = sec.toFixed(1);
 }
 
-reset_button.addEventListener('click', reset_game);
+function startTimer() {
+  playing = true;
+  clickBtn.textContent = "click as fast as you can!!!";
+  resetBtn.style.display = "none";
+  btn5.style.display = "none";
+  btn10.style.display = "none";
+  btn15.style.display = "none";
 
-function start_timer() {
-  is_playing = true;
-  click_button.textContent = "click as fast as you can!!!";
-  reset_button.style.display = "none";
-  five_sec.style.display = "none";
-  ten_sec.style.display = "none";
-  fifteen_sec.style.display = "none";
-
-  timer_interval = setInterval(() => {
-    time_left = parseFloat((time_left - timer_step).toFixed(1));
-    timer_span.textContent = time_left.toFixed(1);
-
-    if (time_left <= 0.0) end_game();
-  }, 1000 * timer_step);
+  interval = setInterval(() => {
+    timeLeft = parseFloat((timeLeft - 0.1).toFixed(1));
+    timerEl.textContent = timeLeft.toFixed(1);
+    if (timeLeft <= 0) endGame();
+  }, 100);
 }
 
-function end_game() {
-  clearInterval(timer_interval);
-  is_playing = false;
-  is_game_over = true;
-  click_button.disabled = true;
-  click_button.display = "none";
-  click_button.textContent = "time's up, check your stats";
-  reset_button.style.display = "block";
-  five_sec.style.display = "block";
-  ten_sec.style.display = "block";
-  fifteen_sec.style.display = "block";
+function endGame() {
+  clearInterval(interval);
+  playing = false;
+  gameOver = true;
+  clickBtn.disabled = true;
+  clickBtn.textContent = "time's up, check your stats";
+  resetBtn.style.display = "block";
+  btn5.style.display = "block";
+  btn10.style.display = "block";
+  btn15.style.display = "block";
 
-  const final_cps = clicks_count / game_duration;
-  avg_cps_span.textContent = final_cps.toFixed(2);
+  const cps = clicks / duration;
+  avgEl.textContent = cps.toFixed(2);
 
-  lifetime_clicks += clicks_count;
-  lifetime_games += 1;
-
-  localStorage.setItem('cps_lifetime_clicks', lifetime_clicks);
-  localStorage.setItem('cps_lifetime_games', lifetime_games);
-
-  update_lifetime_stats_display();
+  lifeClicks += clicks;
+  lifeGames += 1;
+  localStorage.setItem('cps_lifetime_clicks', lifeClicks);
+  localStorage.setItem('cps_lifetime_games', lifeGames);
+  updateLifetimeDisplay();
 }
 
-function update_lifetime_stats_display() {
-  lifetime_clicks_span.textContent = lifetime_clicks;
-
-  if (lifetime_games === 0) {
-    lifetime_avg_cps_span.textContent = "0.00";
+function updateLifetimeDisplay() {
+  lifeClicksEl.textContent = lifeClicks;
+  if (lifeGames === 0) {
+    lifeAvgEl.textContent = "0.00";
     return;
   }
-
-  const total_active_seconds = lifetime_games * game_duration;
-  const overall_avg = lifetime_clicks / total_active_seconds;
-  lifetime_avg_cps_span.textContent = overall_avg.toFixed(2);
+  // not perfectly accurate since duration can change between games but close enough
+  const totalSec = lifeGames * duration;
+  lifeAvgEl.textContent = (lifeClicks / totalSec).toFixed(2);
 }
 
-function reset_game() {
-  clearInterval(timer_interval);
-
-  time_left = game_duration;
-  clicks_count = 0;
-  is_playing = false;
-  is_game_over = false;
-
-  timer_span.textContent = game_duration.toFixed(1);
-  clicks_span.textContent = "0";
-  avg_cps_span.textContent = "0.00";
-  click_button.disabled = false;
-  click_button.textContent = "click me to start the timer!!";
+function resetGame() {
+  clearInterval(interval);
+  timeLeft = duration;
+  clicks = 0;
+  playing = false;
+  gameOver = false;
+  timerEl.textContent = duration.toFixed(1);
+  clicksEl.textContent = "0";
+  avgEl.textContent = "0.00";
+  clickBtn.disabled = false;
+  clickBtn.textContent = "click me to start the timer!!";
 }
