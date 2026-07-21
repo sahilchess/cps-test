@@ -1,7 +1,6 @@
 # cps-test
 
-A personalized, upgraded remake of Flappy Bird featuring a super cool hero asset and sleek modern optimization. Built specifically for [onekey](https://onekey.hackclub.com).
-
+a cps tester where you get your clicks per second pretty accurately.
 ### [play here](https://cps-test-rust.vercel.app/)
 
 <img width="2500" height="auto" alt="image" src="https://github.com/user-attachments/assets/4d66f483-d2dd-45f9-a7ac-b645d6ba4d57" />
